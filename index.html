@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security Labs</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+    .lab-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #1e293b;
+      border: 1px solid #facc15;
+    }
+    .lab-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+    .navbar {
+      background: #0f172a;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid #facc15;
+    }
+    .filter-btn {
+      margin: 0 5px;
+    }
+    .progress-bar {
+      height: 5px;
+      background: #facc15;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" data-aos="fade-down">
+    <div class="container">
+      <a class="navbar-brand" href="#">🧪 Security Labs</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#labs">Labs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="container py-5 text-center" data-aos="fade-up">
+    <h1 class="mb-4 display-4">🧪 Security Training Labs</h1>
+    <p class="lead mb-5">Sharpen your skills by solving real-world web security labs!</p>
+  </section>
+
+  <!-- Labs Section -->
+  <section id="labs" class="container py-5">
+    <h2 class="text-center mb-4" data-aos="fade-up">Our Labs</h2>
+    <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('all')">All</button>
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('xss')">XSS</button>
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('sql')">SQL Injection</button>
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('csrf')">CSRF</button>
+    </div>
+    <div class="row justify-content-center" id="labContainer">
+      <!-- XSS Lab -->
+      <div class="col-md-4 lab-item" data-category="xss" data-aos="fade-up" data-aos-delay="200">
+        <div class="card lab-card text-white">
+          <div class="card-body">
+            <h3 class="card-title">🔥 XSS Labs</h3>
+            <p class="card-text">Practice Cross-Site Scripting vulnerabilities from easy to advanced levels.</p>
+            <div class="progress mb-3">
+              <div class="progress-bar" style="width: 0%;" id="xssProgress"></div>
+            </div>
+            <a href="xss/index.html" class="btn btn-warning w-100">Start XSS</a>
+          </div>
+        </div>
+      </div>
+      <!-- SQL Injection (Placeholder) -->
+      <div class="col-md-4 lab-item" data-category="sql" data-aos="fade-up" data-aos-delay="300">
+        <div class="card lab-card text-white">
+          <div class="card-body">
+            <h3 class="card-title">💉 SQL Injection Labs</h3>
+            <p class="card-text">Coming soon! Master SQL Injection techniques.</p>
+            <button class="btn btn-secondary w-100" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+      <!-- CSRF (Placeholder) -->
+      <div class="col-md-4 lab-item" data-category="csrf" data-aos="fade-up" data-aos-delay="400">
+        <div class="card lab-card text-white">
+          <div class="card-body">
+            <h3 class="card-title">🔒 CSRF Labs</h3>
+            <p class="card-text">Coming soon! Learn Cross-Site Request Forgery attacks.</p>
+            <button class="btn btn-secondary w-100" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="container py-5 text-center" data-aos="fade-up">
+    <h2 class="mb-4">About Security Labs</h2>
+    <p class="lead mx-auto" style="max-width: 600px;">
+      Security Labs is a platform dedicated to helping developers, security enthusiasts, and professionals master web security through hands-on labs.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container py-5" data-aos="fade-up">
+    <h2 class="text-center mb-4">Get in Touch</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form id="contactForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control bg-dark text-white border-warning" id="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control bg-dark text-white border-warning" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control bg-dark text-white border-warning" id="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning w-100">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Message Sent</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Thank you for your message! We'll get back to you soon.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-center py-4">
+    <p>&copy; 2025 Security Labs. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Filter Labs
+    function filterLabs(category) {
+      const labs = document.querySelectorAll('.lab-item');
+      labs.forEach(lab => {
+        const labCategory = lab.getAttribute('data-category');
+        lab.style.display = (category === 'all' || labCategory === category) ? 'block' : 'none';
+      });
+    }
+
+    // Contact Form Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      if (name && email && message) {
+        const modal = new bootstrap.Modal(document.getElementById('successModal'));
+        modal.show();
+        this.reset();
+      } else {
+        alert('Please fill out all fields.');
+      }
+    });
+
+    // Progress Tracker (Placeholder)
+    function updateProgress() {
+      const progress = localStorage.getItem('xssProgress') || 0;
+      document.getElementById('xssProgress').style.width = `${progress}%`;
+    }
+    updateProgress();
+  </script>
+</body>
+</html>
