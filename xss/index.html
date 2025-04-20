@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XSS Labs - Security Labs</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+    .lab-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #1e293b;
+      border: 1px solid #facc15;
+    }
+    .lab-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+    .navbar {
+      background: #0f172a;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid #facc15;
+    }
+    .progress-bar {
+      height: 5px;
+      background: #facc15;
+    }
+    .filter-btn {
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" data-aos="fade-down">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">🧪 Security Labs</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../index.html#labs">Labs</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="container py-5 text-center" data-aos="fade-up">
+    <h1 class="display-4 mb-4">🧪 XSS Labs</h1>
+    <p class="lead mb-5">Practice Cross-Site Scripting vulnerabilities from beginner to advanced levels.</p>
+  </section>
+
+  <!-- Labs Section -->
+  <section class="container py-5">
+    <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('all')">All</button>
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('easy')">Easy</button>
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('medium')">Medium</button>
+      <button class="btn btn-outline-warning filter-btn" onclick="filterLabs('hard')">Hard</button>
+    </div>
+    <div class="row justify-content-center" id="labContainer">
+      <!-- Easy Lab 1 -->
+      <div class="col-md-4 lab-item" data-category="easy" data-aos="fade-up" data-aos-delay="200">
+        <div class="card lab-card text-white">
+          <div class="card-body">
+            <h5 class="card-title">Easy - Lab 1</h5>
+            <p class="card-text">Learn basic XSS by injecting simple scripts.</p>
+            <div class="progress mb-3">
+              <div class="progress-bar" style="width: 0%;" id="easyLab1Progress"></div>
+            </div>
+            <a href="easy/lab1.html" class="btn btn-success w-100" data-bs-toggle="tooltip" data-bs-placement="top" title="Start with basic XSS injection techniques.">Start Lab</a>
+          </div>
+        </div>
+      </div>
+      <!-- Easy Lab 2 -->
+      <div class="col-md-4 lab-item" data-category="easy" data-aos="fade-up" data-aos-delay="300">
+        <div class="card lab-card text-white">
+          <div class="card-body">
+            <h5 class="card-title">Easy - Lab 2</h5>
+            <p class="card-text">Explore XSS with URL parameters.</p>
+            <div class="progress mb-3">
+              <div class="progress-bar" style="width: 0%;" id="easyLab2Progress"></div>
+            </div>
+            <a href="easy/lab2.html" class="btn btn-success w-100" data-bs-toggle="tooltip" data-bs-placement="top" title="Practice XSS using query strings.">Start Lab</a>
+          </div>
+        </div>
+      </div>
+      <!-- Medium Lab 1 -->
+      <div class="col-md-4 lab-item" data-category="medium" data-aos="fade-up" data-aos-delay="400">
+        <div class="card lab-card text-white">
+          <div class="card-body">
+            <h5 class="card-title">Medium - Lab 1</h5>
+            <p class="card-text">Tackle filtered XSS inputs.</p>
+            <div class="progress mb-3">
+              <div class="progress-bar" style="width: 0%;" id="mediumLab1Progress"></div>
+            </div>
+            <a href="medium/lab1.html" class="btn btn-warning w-100" data-bs-toggle="tooltip" data-bs-placement="top" title="Bypass basic XSS filters.">Start Lab</a>
+          </div>
+        </div>
+      </div>
+      <!-- Hard Lab (Placeholder) -->
+      <div class="col-md-4 lab-item" data-category="hard" data-aos="fade-up" data-aos-delay="500">
+        <div class="card lab-card text-white">
+          <div class="card-body">
+            <h5 class="card-title">Hard - Lab 1</h5>
+            <p class="card-text">Coming soon! Advanced XSS challenges.</p>
+            <button class="btn btn-secondary w-100" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal for Lab Instructions -->
+  <div class="modal fade" id="labModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="labModalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="labModalBody"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" id="startLabBtn">Start Lab</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-center py-4">
+    <p>© 2025 Security Labs. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Initialize Tooltips
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    // Filter Labs
+    function filterLabs(category) {
+      const labs = document.querySelectorAll('.lab-item');
+      labs.forEach(lab => {
+        const labCategory = lab.getAttribute('data-category');
+        lab.style.display = (category === 'all' || labCategory === category) ? 'block' : 'none';
+      });
+    }
+
+    // Progress Tracker (Placeholder)
+    function updateProgress() {
+      const labs = ['easyLab1', 'easyLab2', 'mediumLab1'];
+      labs.forEach(lab => {
+        const progress = localStorage.getItem(`${lab}Progress`) || 0;
+        document.getElementById(`${lab}Progress`).style.width = `${progress}%`;
+      });
+    }
+    updateProgress();
+
+    // Modal for Lab Instructions (Placeholder)
+    document.querySelectorAll('.btn[data-bs-toggle="tooltip"]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const labTitle = this.parentElement.querySelector('.card-title').textContent;
+        const labDesc = this.parentElement.querySelector('.card-text').textContent;
+        const labUrl = this.getAttribute('href');
+
+        document.getElementById('labModalTitle').textContent = labTitle;
+        document.getElementById('labModalBody').textContent = `Objective: ${labDesc} Ready to test your skills?`;
+        document.getElementById('startLabBtn').onclick = () => window.location.href = labUrl;
+
+        const modal = new bootstrap.Modal(document.getElementById('labModal'));
+        modal.show();
+      });
+    });
+
+    // Cloudflare Script (Retained)
+    (function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93340d7e1f81bfc0',t:'MTc0NTE0NTkzMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+  </script>
+</body>
+</html>
